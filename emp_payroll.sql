@@ -62,3 +62,8 @@ alter table employee_payroll rename column salary to basic_pay,
 	add taxable_pay double not null after deductions, 
 	add tax double not null after taxable_pay, 
 	add net_pay double not null after tax;
+    
+#UC 10
+update employee_payroll set department = 'Sales' where name = 'Terise';
+insert into employee_payroll (name,phone, department, gender, basic_pay, deductions, taxable_pay, tax, net_pay, start) values 
+('Terise', 9000900088, 'Marketing', 'F', 400000, 50000, 350000, 10000, 340000, '2019-11-13');
