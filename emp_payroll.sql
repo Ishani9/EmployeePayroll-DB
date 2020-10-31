@@ -49,3 +49,9 @@ select gender, avg(salary) from employee_payroll group by gender;
 select gender, min(salary) from employee_payroll group by gender;
 select gender, max(salary) from employee_payroll group by gender;
 select gender, count(*) from employee_payroll group by gender;
+
+# UC 8
+alter table employee_payroll 
+	add phone 		numeric(10) not null after name,
+	add address		 varchar(200) not null default 'INDIA' after phone,
+	add department 	varchar(200) not null after address;
