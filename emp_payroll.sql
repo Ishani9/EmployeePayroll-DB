@@ -67,3 +67,47 @@ alter table employee_payroll rename column salary to basic_pay,
 update employee_payroll set department = 'Sales' where name = 'Terise';
 insert into employee_payroll (name,phone, department, gender, basic_pay, deductions, taxable_pay, tax, net_pay, start) values 
 ('Terise', 9000900088, 'Marketing', 'F', 400000, 50000, 350000, 10000, 340000, '2019-11-13');
+
+# UC 12
+create table Company(
+    company_id int not null,
+    company_name varchar(50) not null,
+    primary key(company_id)
+    );
+
+ create table Department (
+     dept_id int not null,
+     dept_name varchar(50) not null,
+     primary key(dept_id)
+     );
+     
+create table Employee(
+	emp_id int unsigned not null auto_increment primary key,
+	company_id int not null,
+   dept_id int not null,
+   firstName varchar(50) not null,
+   lastName varchar(50) not null,
+   address varchar(50) not null,
+   phoneNo long,
+   gender char(1),
+   foreign key(company_id) references company(company_id),
+   foreign key(dept_id) references department(dept_id)
+   );
+   
+create table payroll(
+    emp_id int unsigned not null auto_increment primary key,
+    basic_pay double not null,
+    deductions double not null,
+    taxable_income double not null,
+    income_tax double not null,
+    net_pay double not null,
+    foreign key (emp_id) references employee(emp_id)
+    );
+    
+create table emp_dept
+(
+emp_id int unsigned not null,
+dept_id int not null,
+foreign key (emp_id)  references employee (emp_id),
+foreign key (dept_id) references department (dept_id)
+);
